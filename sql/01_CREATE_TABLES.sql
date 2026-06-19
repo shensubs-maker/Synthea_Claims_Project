@@ -35,3 +35,36 @@ CREATE TABLE claims (
     healthcareclaimtypeid1 TEXT,
     healthcareclaimtypeid2 TEXT
 );
+
+DROP TABLE IF EXISTS patients;
+
+CREATE TABLE patients (
+    id TEXT,
+    birthdate TEXT,
+    deathdate TEXT,
+    ssn TEXT,
+    drivers TEXT,
+    passport TEXT,
+    prefix TEXT,
+    first TEXT,
+    middle TEXT,
+    last TEXT,
+    suffix TEXT,
+    maiden TEXT,
+    marital TEXT,
+    race TEXT,
+    ethnicity TEXT,
+    gender TEXT,
+    birthplace TEXT,
+    address TEXT,
+    city TEXT,
+    state TEXT,
+    county TEXT,
+    fips TEXT,
+    zip TEXT,
+    lat TEXT,
+    lon TEXT,
+    healthcare_expenses TEXT,
+    healthcare_coverage TEXT,
+    income TEXT
+);
