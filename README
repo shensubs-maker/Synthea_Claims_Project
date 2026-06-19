@@ -1,0 +1,15 @@
+# Synthea Healthcare Claims Analysis
+
+SQL portfolio project analyzing synthetic healthcare claims data generated with Synthea.
+
+## Tools
+- PostgreSQL
+- SQL
+- Git
+- GitHub
+
+## Project Goals
+- Analyze claims data
+- Explore patient utilization
+- Investigate payer patterns
+- Practice SQL joins, aggregations, subqueries, CTEs, and window functions
