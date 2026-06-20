@@ -68,3 +68,54 @@ CREATE TABLE patients (
     healthcare_coverage TEXT,
     income TEXT
 );
+
+-- Encounters table
+-- Source: encounters.csv
+-- One row per healthcare encounter
+
+DROP TABLE IF EXISTS encounters;
+
+CREATE TABLE encounters (
+    id TEXT,
+    start TEXT,
+    stop TEXT,
+    patient TEXT,
+    organization TEXT,
+    provider TEXT,
+    payer TEXT,
+    encounterclass TEXT,
+    code TEXT,
+    description TEXT,
+    base_encounter_cost TEXT,
+    total_claim_cost TEXT,
+    payer_coverage TEXT,
+    reasoncode TEXT,
+    reasondescription TEXT
+);
+
+DROP TABLE IF EXISTS payers;
+
+CREATE TABLE payers (
+    id TEXT,
+    name TEXT,
+    ownership TEXT,
+    address TEXT,
+    city TEXT,
+    state_headquarters TEXT,
+    zip TEXT,
+    phone TEXT,
+    amount_covered TEXT,
+    amount_uncovered TEXT,
+    revenue TEXT,
+    covered_encounters TEXT,
+    uncovered_encounters TEXT,
+    covered_medications TEXT,
+    uncovered_medications TEXT,
+    covered_procedures TEXT,
+    uncovered_procedures TEXT,
+    covered_immunizations TEXT,
+    uncovered_immunizations TEXT,
+    unique_customers TEXT,
+    QOLS_AVG TEXT,
+    member_months TEXT
+);

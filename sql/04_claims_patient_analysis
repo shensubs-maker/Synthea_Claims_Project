@@ -1,0 +1,137 @@
+
+-- Count total claims
+
+SELECT COUNT(*)
+FROM claims;
+
+-- Preview claims table
+
+SELECT *
+FROM claims
+LIMIT 5;
+
+-- Count total patients
+
+SELECT COUNT(*)
+FROM patients;
+
+-- Preview patients table
+
+SELECT *
+FROM patients
+LIMIT 5;
+
+-- Preview claims with patient demographic information
+
+SELECT
+    c.id AS claim_id,
+    c.patientid,
+    p.birthdate,
+    p.gender,
+    p.race,
+    p.ethnicity,
+    c.servicedate,
+    c.status1
+ FROM claims c
+ JOIN patients p
+    ON c.patientid = p.id 
+LIMIT 10; 
+
+-- Count claims by gender
+
+SELECT 
+    p.gender,
+    COUNT(c.id) AS claim_count
+FROM claims c
+JOIN patients p
+    ON c.patientid = p.id
+GROUP BY p.gender
+ORDER BY claim_count DESC; 
+
+-- Count patient by gender
+
+SELECT
+    gender,
+    COUNT(*) AS patient_count
+FROM patients
+GROUP BY gender;
+
+-- Calculate claims per patient by gender
+
+SELECT 
+    p.gender,
+    COUNT(c.id) AS total_claims,
+    COUNT(DISTINCT p.id) AS patient_count,
+    ROUND(
+        COUNT(c.id)::numeric /
+        COUNT(DISTINCT p.id),
+        2
+    ) AS claims_per_patient
+FROM claims c
+JOIN patients p
+    ON c.patientid = p.id
+GROUP BY gender;
+
+-- Calculate average age per gender
+
+SELECT  
+    gender,
+    AVG(
+        EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date))
+    ) AS avg_age
+FROM patients
+GROUP BY gender;
+
+-- Count patients per age group
+
+SELECT 
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+    COUNT(*) AS patient_count
+FROM patients
+GROUP BY age_group
+ORDER BY age_group;
+
+-- Calculate claims per patient by agee group
+
+SELECT 
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+    COUNT(c.id) AS claim_count
+FROM patients p
+JOIN claims c
+    ON p.id = c.patientid
+GROUP BY age_group
+ORDER BY claim_count DESC;
+
+-- Calculate claims per patient by each age group 
+
+SELECT 
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+    COUNT(c.id) AS claim_count,
+    COUNT(DISTINCT p.id) AS patient_count,
+    ROUND (
+        COUNT(c.id)::numeric /
+        COUNT(DISTINCT p.id), 2
+    ) AS claims_per_patient
+FROM patients p
+JOIN claims c
+    ON p.id = c.patientid
+GROUP BY age_group
+ORDER BY claims_per_patient DESC;

@@ -1,0 +1,108 @@
+# Findings Log
+
+## Dataset Overview
+
+- Claims: 10,259
+- Patients: 111
+
+## Gender Analysis
+
+- Male claims: 5,304
+- Female claims: 4,955
+
+- Male patients: 49
+- Female patients: 62
+
+- Male claims per patient: 108.24
+- Female claims per patient: 79.92
+
+Findings:
+- Males generated more claims despite representing fewer patients.
+- Males had higher claim utilization.
+
+## Age Analysis
+
+Patient count by age group:
+- Under 18: 18
+- 18-34: 19
+- 35-49: 22
+- 50-64: 28
+- 65+: 24
+
+Claims per patient by age group:
+- Under 18: 27.89
+- 18-34: 42.42
+- 35-49: 56.59
+- 50-64: 89.57
+- 65+: 216.58
+
+Findings:
+- Claim utilization increased with age.
+- 65+ patients had the highest utilization.
+- 65+ patients generated about 2.4x more claims per patient than the 50-64 group.
+
+## Next Questions
+
+- Analyze payers
+- Analyze encounters
+- Analyze conditions
+- Analyze medications
+
+## Data Validation Notes
+
+- No duplicate patient IDs identified.
+- No duplicate claim IDs identified.
+- No missing birthdates identified.
+- No missing gender values identified.
+- All claims successfully linked to a patient record.
+
+## Encounter Analysis
+
+Encounter count by class:
+- Ambulatory: 3,225
+- Wellness: 1,371
+- Outpatient: 886
+- Emergency: 216
+- Urgent Care: 162
+- Inpatient: 101
+
+Findings:
+- Ambulatory encounters were the most common encounter type.
+- Wellness and outpatient visits were also common.
+- Emergency and inpatient encounters represented a small portion of total encounters.
+
+### Encounter Cost Analysis
+
+Average claim cost by encounter class:
+
+- Inpatient: $22,822.83
+- SNF: $18,116.74
+- Hospice: $9,552.20
+- Emergency: $3,729.75
+- Ambulatory: $3,120.58
+
+Findings:
+- Inpatient encounters had the highest average claim cost.
+- Ambulatory encounters were the most common encounter type but were not the most expensive.
+- High-cost encounter classes (inpatient, SNF, hospice) represented relatively few encounters.
+- Ambulatory encounters were the most common encounter type (3,225 encounters).
+- Inpatient encounters had the highest average claim cost ($22,822.83).
+- Ambulatory encounters generated the highest total claim cost (~$10.1 million).
+- Although inpatient encounters were significantly more expensive per encounter, ambulatory encounters drove overall spending due to high utilization.
+
+### Encounter Utilization by Age Group
+
+Encounters per patient:
+
+- Under 18: 22.28
+- 18-34: 35.47
+- 35-49: 43.41
+- 50-64: 50.46
+- 65+: 107.88
+
+Findings:
+
+- Encounter utilization increased with age.
+- Patients aged 65+ averaged 107.88 encounters per patient.
+- The 65+ age group generated more than twice as many encounters per patient as the 50-64 age group.
+- Age-related increases in encounter utilization mirrored age-related increases in claim utilization.

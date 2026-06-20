@@ -1,0 +1,95 @@
+-- Count total encounters
+
+SELECT COUNT(*)
+FROM encounters;
+
+-- Preveiw encounters table
+
+SELECT *
+FROM encounters
+LIMIT 5;
+
+-- Count encounters by encounter class
+
+SELECT  
+    encounterclass,
+    COUNT(*) AS encount_count
+FROM encounters
+GROUP BY encounterclass
+ORDER BY encount_count DESC;
+
+-- Calculate average claim cost by encounter class
+
+SELECT  
+    encounterclass,
+    ROUND(
+        AVG(total_claim_cost::numeric), 2
+    ) AS avg_claim_cost
+FROM encounters
+GROUP BY encounterclass
+ORDER BY avg_claim_cost DESC;
+
+-- Calculate the total claim cost by encounter class
+
+SELECT  
+    encounterclass,
+    SUM(total_claim_cost::numeric) AS total_cost
+FROM encounters
+GROUP BY encounterclass
+ORDER BY total_cost DESC;
+
+-- Calculate claims per patient by age group
+
+SELECT
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+    COUNT(e.id) AS encounter_count,
+    COUNT(DISTINCT p.id) AS patient_count,
+    ROUND (
+        COUNT(e.id)::numeric /
+        COUNT(DISTINCT p.id), 2
+    ) AS encounters_per_patient
+FROM patients p
+JOIN encounters e
+    ON p.id = e.patient
+GROUP BY age_group
+ORDER BY encounters_per_patient DESC;
+
+-- Count encounters by encounter class for patients 65+
+
+SELECT 
+    encounterclass,
+    COUNT(*) AS encounter_count
+FROM encounters e
+JOIN patients p
+    ON e.patient = p.id
+WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) >=65
+GROUP BY encounterclass
+ORDER BY encounter_count DESC;
+
+-- Calculate encounter cost per patient by age group
+
+SELECT
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+    SUM(total)) AS encounter_count,
+    COUNT(DISTINCT p.id) AS patient_count,
+    ROUND (
+        COUNT(e.id)::numeric /
+        COUNT(DISTINCT p.id), 2
+    ) AS encounters_per_patient
+FROM patients p
+JOIN encounters e
+    ON p.id = e.patient
+GROUP BY age_group
+ORDER BY encounters_per_patient DESC;
