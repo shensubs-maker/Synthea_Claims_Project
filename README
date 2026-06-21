@@ -5,7 +5,7 @@ This project analyzes synthetic healthcare claims data generated with Synthea an
 
 ## Dashboard
 
-![Healthcare Utilization Dashboard](/Users/sherilynhensley/Desktop/Data Analytics/Synthea_Claims_Project/images/healthcare_utilization_dashboard.png)
+![Healthcare Utilization Dashboard](images/healthcare_utilization_dashboard.png)
 
 ## Business Questions
 - Which patient groups generate the highest claims volume?
