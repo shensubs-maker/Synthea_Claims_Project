@@ -58,3 +58,29 @@ FROM encounters e
 LEFT JOIN patients p
     ON e.patient = p.id
 WHERE p.id IS NULL;
+
+-- Count encounters by age group
+
+SELECT  
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+ COUNT(e.id) AS encounter_count
+FROM encounters e
+JOIN patients p
+    ON e.patient = p.id
+GROUP BY age_group
+ORDER BY encounter_count DESC;
+
+-- Validation that all encounters are linked to a payer
+
+SELECT COUNT(*)
+FROM encounters e
+JOIN payers p
+    ON e.payer = p.id 
+WHERE p.id IS NULL;
+

@@ -106,3 +106,21 @@ Findings:
 - Patients aged 65+ averaged 107.88 encounters per patient.
 - The 65+ age group generated more than twice as many encounters per patient as the 50-64 age group.
 - Age-related increases in encounter utilization mirrored age-related increases in claim utilization.
+
+### Encounter Classes Among Patients Aged 65+
+
+Findings:
+
+- Patients aged 65+ generated 1,723 ambulatory encounters, the highest encounter class by volume.
+- Patients aged 65+ accounted for more than half of all ambulatory encounters.
+- Patients aged 65+ generated 60 of 101 inpatient encounters.
+- Both routine care (ambulatory) and high-acuity care (inpatient) contributed to utilization among older patients.
+- Patients aged 65+ had the highest healthcare utilization, averaging 107.88 encounters per patient.
+- However, the highest average encounter costs were observed in the 18-34 and 35-49 age groups.
+- This suggests that encounter frequency and encounter cost may be driven by different factors.
+
+### Payer Analysis
+
+- Medicare was associated with the highest number of encounters.
+- The Medicare population was concentrated in the 65+ age group.
+- The age distribution of Medicare patients likely contributed to the higher encounter volume observed for Medicare.
