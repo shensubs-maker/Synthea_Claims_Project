@@ -3,6 +3,10 @@
 
 This project analyzes synthetic healthcare claims data generated with Synthea and stored in PostgreSQL. The goal was to explore healthcare utilization patterns, identify drivers of claims and encounter volume, and examine how medication costs varied across patient populations.
 
+## Dashboard
+
+![Healthcare Utilization Dashboard](/Users/sherilynhensley/Desktop/Data Analytics/Synthea_Claims_Project/images/healthcare_utilization_dashboard.png)
+
 ## Business Questions
 - Which patient groups generate the highest claims volume?
 - Which patient groups generate the highest encounter volume?

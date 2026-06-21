@@ -38,7 +38,7 @@ FROM encounters
 GROUP BY encounterclass
 ORDER BY total_cost DESC;
 
--- Calculate claims per patient by age group
+-- Calculate encounters per patient by age group
 
 SELECT
     CASE

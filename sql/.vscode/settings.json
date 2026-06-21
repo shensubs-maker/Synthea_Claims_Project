@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "synthea_claims_project",
+            "database": "synthea_claims_project",
+            "username": "postgres"
+        }
+    ]
+}
