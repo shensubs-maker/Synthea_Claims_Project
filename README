@@ -1,15 +1,56 @@
-# Synthea Healthcare Claims Analysis
+# Healthcare Claims Utilization Analysis
+## Project Overview
 
-SQL portfolio project analyzing synthetic healthcare claims data generated with Synthea.
+This project analyzes synthetic healthcare claims data generated with Synthea and stored in PostgreSQL. The goal was to explore healthcare utilization patterns, identify drivers of claims and encounter volume, and examine how medication costs varied across patient populations.
 
-## Tools
+## Business Questions
+- Which patient groups generate the highest claims volume?
+- Which patient groups generate the highest encounter volume?
+- How does healthcare utilization vary by age group?
+- Which payers are associated with the most encounters?
+- Which medications and conditions drive the highest costs?
+- How does medication spending vary across patient populations?
+
+## Tools Used
 - PostgreSQL
+- pgAdmin
 - SQL
 - Git
 - GitHub
 
-## Project Goals
-- Analyze claims data
-- Explore patient utilization
-- Investigate payer patterns
-- Practice SQL joins, aggregations, subqueries, CTEs, and window functions
+## Dataset
+Synthetic healthcare data generated using Synthea.
+
+## Tables analyzed:
+- Patients
+- Claims
+- Encounters
+- Payers
+- Conditions
+- Medications
+
+## Key Findings
+- Patients aged 65+ generated the highest claims volume.
+- Patients aged 65+ generated the highest encounter volume.
+- Medicare was associated with the highest encounter volume and was primarily concentrated in the 65+ population.
+- Medication spending increased with age, with the 65+ group generating the highest total medication costs.
+- he most frequently prescribed medications were not always the medications responsible for the highest total costs.
+- Several conditions generated high medication costs despite relatively lower medication counts, demonstrating that utilization and cost do not always align.
+- The conditions dataset contained a mix of diagnoses, clinical findings, and social determinants of health rather than strictly medical diagnoses.
+
+## Project Structure
+sql/
+├── 01_create_tables.sql
+├── 03_data_validation.sql
+├── 04_claims_patient_analysis.sql
+├── 05_encounters_analysis.sql
+├── 06_payers_analysis.sql
+├── 07_conditions_medications_analysis.sql
+docs/
+└── findings.md
+
+## Future Improvements
+- Create visualizations in Tableau.
+- Develop an interactive dashboard for utilization and cost trends.
+- Analyze additional Synthea datasets to compare utilization patterns across populations.
+- Expand medication analysis to evaluate cost per patient and cost per condition.
