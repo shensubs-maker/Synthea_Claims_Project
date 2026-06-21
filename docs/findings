@@ -119,8 +119,23 @@ Findings:
 - However, the highest average encounter costs were observed in the 18-34 and 35-49 age groups.
 - This suggests that encounter frequency and encounter cost may be driven by different factors.
 
-### Payer Analysis
+## Payer Analysis
 
 - Medicare was associated with the highest number of encounters.
 - The Medicare population was concentrated in the 65+ age group.
 - The age distribution of Medicare patients likely contributed to the higher encounter volume observed for Medicare.
+
+## Conditions Exploration
+
+- The conditions table contained 3,817 records and 182 unique condition codes.
+- The most frequently recorded entries included medication reviews, stress-related findings, employment status, and dental conditions.
+- The conditions table contains a mix of diagnoses, social determinants of health, and clinical findings rather than strictly medical conditions.
+
+## Medications Analysis
+
+- The medications with the highest total costs differed from the medications prescribed most frequently, suggesting that medication spending is influenced by both utilization and unit cost. During analysis, inconsistent capitalization was identified for at least one medication name (Simvastatin), indicating potential data standardization issues.
+- Prediabetes, COPD, and osteoarthritis generated some of the highest total medication costs despite not having the highest medication counts, suggesting higher spending per treatment record compared to several more common conditions.
+- Medication spending increased with age, with the 65+ age group accounting for the highest total medication costs ($1.64M). This aligns with previous findings showing that older patients also generated the highest claims and encounter utilization.
+
+## Final Summary
+- Healthcare utilization and costs increased with age. Patients aged 65+ generated the highest claims volume, encounter volume, and medication spending, indicating that older patients were the primary drivers of healthcare resource utilization in this dataset.

@@ -119,3 +119,33 @@ CREATE TABLE payers (
     QOLS_AVG TEXT,
     member_months TEXT
 );
+
+DROP TABLE IF EXISTS conditions;
+
+CREATE TABLE conditions (
+    start TEXT,
+    stop TEXT,
+    patient TEXT,
+    encounter TEXT,
+    system TEXT,
+    code TEXT,
+    description TEXT
+);
+
+DROP TABLE IF EXISTS medications;
+
+CREATE TABLE medications (
+    start TEXT,
+    stop TEXT,
+    patient TEXT,
+    payer TEXT,
+    encounter TEXT,
+    code TEXT,
+    description TEXT,
+    base_cost TEXT,
+    payer_coverage TEXT,
+    dispenses TEXT,
+    totalcost TEXT,
+    reasoncode TEXT,
+    reasondescription TEXT
+);

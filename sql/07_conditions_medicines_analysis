@@ -1,0 +1,91 @@
+-- Count total condition records
+
+SELECT COUNT(*)
+FROM conditions;
+
+-- Preview the conditions table
+
+SELECT *
+FROM conditions
+LIMIT 10;
+
+-- Count distinct conditions
+
+SELECT COUNT(DISTINCT code)
+FROM conditions;
+
+-- Count top 20 condition occurences
+
+SELECT 
+    description,
+    COUNT(*) AS condition_count
+FROM conditions
+GROUP BY description
+ORDER BY condition_count DESC
+LIMIT 20;
+
+-- Count total medication records
+
+SELECT COUNT(*)
+FROM medications;
+
+-- Preveiw medications table
+
+SELECT *
+FROM medications
+LIMIT 10;
+
+-- Count distinct medications
+
+SELECT COUNT(DISTINCT description)
+FROM medications;
+
+-- Count top 20 medication occurences
+
+SELECT
+    description,
+    COUNT(*) AS medication_count
+FROM medications
+GROUP BY description
+ORDER BY medication_count DESC
+LIMIT 20;
+
+-- Calculate total cost of each medication
+
+SELECT
+    description AS drug_name,
+    SUM(totalcost::numeric) AS total_cost
+FROM medications
+GROUP BY drug_name
+ORDER BY total_cost DESC;
+
+SELECT 
+    reasondescription,
+    COUNT(*) AS medication_count
+FROM medications
+WHERE reasondescription IS NOT NULL
+GROUP BY reasondescription
+ORDER BY medication_count DESC;
+
+SELECT 
+    reasondescription,
+    SUM(totalcost::numeric) AS total_medication_cost
+FROM medications
+WHERE reasondescription IS NOT NULL
+GROUP BY reasondescription
+ORDER BY total_medication_cost DESC;
+
+SELECT 
+    CASE
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) < 18 THEN 'Under 18'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 18 AND 34 THEN '18-34'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 35 AND 49 THEN '35-49'
+        WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthdate::date)) BETWEEN 50 AND 64 THEN '50-64'
+        ELSE '65+'
+    END AS age_group,
+        SUM(totalcost::numeric) AS total_medication_cost 
+FROM medications m
+JOIN patients p
+    ON m.patient = p.id
+GROUP BY age_group
+ORDER BY total_medication_cost DESC;
